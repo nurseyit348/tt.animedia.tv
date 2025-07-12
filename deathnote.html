@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Death Note - Сезондор</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .anime-info {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .meta {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .meta strong {
+      color: orange;
+    }
+
+    .video-container {
+      position: relative;
+      padding-top: 56.25%;
+      height: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .episode-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .episode {
+      background-color: #222;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .episode:hover {
+      background-color: #ff8000;
+    }
+
+    .episode.active {
+      background-color: yellow;
+      color: black;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="anime-info">
+    <h1>Death Note</h1>
+
+    <div class="meta">
+      <p><strong>Мамлекет:</strong> Япония</p>
+      <p><strong>Режиссёрлор:</strong> Тэцуро Араки</p>
+      <p><strong>Студия:</strong> Madhouse</p>
+      <p><strong>Жанр:</strong> Детектив, Триллер, Ужас, Психологиялык</p>
+      <p><strong>Жыл:</strong> 2006–2007</p>
+    </div>
+
+    <div class="video-container">
+      <video id="player" controls poster="deathnote_poster.jpg">
+        <source src="" type="video/mp4" />
+        Сиздин браузер видео ойното албайт.
+      </video>
+    </div>
+
+    <div class="episode-list"> 
+      <div class="episode" onclick="playEpisode(this, 'deathnote/1.mp4')">1-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'deathnote/2.mp4')">2-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'deathnote/3.mp4')">3-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'deathnote/4.mp4')">4-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'deathnote/5.mp4')">5-qism</div>
+      <!-- дагы эпизоддорду кошо берсең -->
+    </div>
+  </div>
+
+  <script>
+    function playEpisode(elem, videoSrc) {
+      document.querySelectorAll('.episode').forEach(e => e.classList.remove('active'));
+      elem.classList.add('active');
+      const player = document.getElementById('player');
+      player.querySelector('source').src = videoSrc;
+      player.load();
+      player.play();
+    }
+  </script>
+</body>
+</html>

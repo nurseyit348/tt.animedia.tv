@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head> 
+  <style>
+    .episode.active {
+      background-color: yellow;
+      color: black;
+    }
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .anime-info {
+      display: flex;
+      flex-direction: column;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .video-container {
+      position: relative;
+      padding-top: 56.25%;
+      height: 0;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .episode-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .episode {
+      background-color: #222;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .episode:hover {
+      background-color: #ff8000;
+    }
+    .meta {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .meta strong {
+      color: orange;
+    }
+  </style>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naruto Shippuden - Сезондор</title>
+</head>
+<body>
+  <div class="anime-info">
+    <h1>Naruto: Bo'ron yillnomalari {TV-2} [15+]</h1>
+
+    <div class="meta">
+      <p><strong>Мамлекет:</strong> Япония</p>
+      <p><strong>Режиссёрлор:</strong> Osamu Koboyasi, Xayato Date, Masaxiko Murato, Tiaki Kon</p>
+      <p><strong>Студия:</strong> Pierrot</p>
+      <p><strong>Жанр:</strong> Экшен, Сёнен, Саргызаш, Комедия, Фантастика, Драма, Фантазия, Триллер</p>
+      <p><strong>Жыл:</strong> 2007</p>
+    </div>
+
+    <div class="video-container">
+      <video id="player" controls poster="naruto_poster.jpg">
+        <source src="" type="video/mp4" />
+        Сиздин браузер видео ойното албайт.
+      </video>
+    </div>
+
+    <div class="episode-list">
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {64-qism}.mp4')">64-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {63-qism}.mp4')">63-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {62-qism}.mp4')">62-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {61-qism}.mp4')">61-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {60-qism}.mp4')">60-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {59-qism}.mp4')">59-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {58-qism}.mp4')">58-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {57-qism}.mp4')">57-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {56-qism}.mp4')">56-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {55-qism}.mp4')">55-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {54-qism}.mp4')">54-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {53-qism}.mp4')">53-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {52-qism}.mp4')">52-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {51-qism}.mp4')">51-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {50-qism}.mp4')">50-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {49-qism}.mp4')">49-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {48-qism}.mp4')">48-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {47-qism}.mp4')">47-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {46-qism}.mp4')">46-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {45-qism}.mp4')">45-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {44-qism}.mp4')">44-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {43-qism}.mp4')">43-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {42-qism}.mp4')">42-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {41-qism}.mp4')">41-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {40-qism}.mp4')">40-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {39-qism}.mp4')">39-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {38-qism}.mp4')">38-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {37-qism}.mp4')">37-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {36-qism}.mp4')">36-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {35-qism}.mp4')">35-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {34-qism}.mp4')">34-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {33-qism}.mp4')">33-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {32-qism}.mp4')">32-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {31-qism}.mp4')">31-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {30-qism}.mp4')">30-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {29-qism}.mp4')">29-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {28-qism}.mp4')">28-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {27-qism}.mp4')">27-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {26-qism}.mp4')">26-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {25-qism}.mp4')">25-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {24-qism}.mp4')">24-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {23-qism}.mp4')">23-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {22-qism}.mp4')">22-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {21-qism}.mp4')">21-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {20-qism}.mp4')">20-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {19-qism}.mp4')">19-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {18-qism}.mp4')">18-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {17-qism}.mp4')">17-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {16-qism}.mp4')">16-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {15-qism}.mp4')">15-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {14-qism}.mp4')">14-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {13-qism}.mp4')">13-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {12-qism}.mp4')">12-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {11-qism}.mp4')">11-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {10-qism}.mp4')">10-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {9-qism}.mp4')">9-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {8-qism}.mp4')">8-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {7-qism}.mp4')">7-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {6-qism}.mp4')">6-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {5-qism}.mp4')">5-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {4-qism}.mp4')">4-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {3-qism}.mp4')">3-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Naruto Shippuden {2-qism}.mp4')">2-qism</div>
+      <div class="episode" onclick="playEpisode(this, 'Animerg Naruto Shippuden 1.mp4')">1-qism</div>
+    </div>
+  </div>
+
+  <script>
+    function playEpisode(elem, videoSrc) {
+      // Бардык эпизоддордун актив классын өчүрөбүз
+      document.querySelectorAll('.episode').forEach(e => e.classList.remove('active'));
+      // Тандалган эпизодго актив класс кошобуз
+      elem.classList.add('active');
+
+      const player = document.getElementById('player');
+      // Видеону жүктөйбүз
+      player.querySelector('source').src = videoSrc;
+      player.load();
+      // Ойнотобуз
+      player.play();
+    }
+  </script>
+</body>
+</html>
+

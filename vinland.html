@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anime Player - Баштапкы дизайн</title>
+<style>
+  body {
+    margin: 0; padding: 0;
+    background: #111;
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    gap: 20px;
+    padding: 0 15px;
+  }
+  .sidebar {
+    background: #1c1c1c;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 12px #ffcc00aa;
+    font-size: 14px;
+  }
+  .sidebar h1 {
+    margin-top: 0;
+    color: #ffcc00;
+    font-size: 24px;
+  }
+  .sidebar p strong {
+    color: #ffcc00;
+  }
+  .main-video {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 16px #ffcc0088;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: black;
+  }
+  .episode-list {
+    background: #1c1c1c;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 0 12px #ffcc0099;
+    max-height: 680px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+  .episode-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  .episode-list::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+  }
+  .episode-list::-webkit-scrollbar-thumb {
+    background-color: #ffcc00;
+    border-radius: 10px;
+  }
+  .episode {
+    cursor: pointer;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: #222;
+    color: #ffcc00;
+    font-weight: 600;
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+  .episode:hover {
+    background: #ffcc00;
+    color: #111;
+  }
+  .episode.active {
+    background: #ffcc00;
+    color: #111;
+    box-shadow: 0 0 12px #ffcc00;
+    font-weight: 700;
+  }
+  @media (max-width: 900px) {
+    .container {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin: 20px 10px;
+    }
+    .episode-list {
+      max-height: none;
+      overflow-y: visible;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <aside class="sidebar" aria-label="Аниме жөнүндө маалымат">
+    <h1>Bleach {TV-1} [15+]</h1>
+    <p><strong>Мамлекет:</strong> Япония</p>
+    <p><strong>Режиссёр:</strong> Noriyuki Abe</p>
+    <p><strong>Студия:</strong> Pierrot</p>
+    <p><strong>Жанр:</strong> Тёмное фэнтези, фантастика, боевик, ужасы</p>
+    <p><strong>Жыл:</strong> 2004</p>
+  </aside>
+
+  <section class="main-video" aria-label="Видео плеер">
+    <video id="player" controls poster="Vinland Saga.jpg" preload="metadata">
+      <source src="vinland/1.mp4" type="video/mp4" />
+      Сиздин браузер видео ойното албайт.
+    </video>
+  </section>
+
+  <nav class="episode-list" aria-label="Эпизоддор тизмеси">
+    <div class="episode active" tabindex="0" onclick="playEpisode(this, 'bleach/1.mp4')">1-qism</div>
+    <div class="episode" tabindex="0" onclick="playEpisode(this, 'bleach/2.mp4')">2-qism</div>
+    <div class="episode" tabindex="0" onclick="playEpisode(this, 'bleach/3.mp4')">3-qism</div>
+    <div class="episode" tabindex="0" onclick="playEpisode(this, 'bleach/4.mp4')">4-qism</div>
+    <div class="episode" tabindex="0" onclick="playEpisode(this, 'bleach/5.mp4')">5-qism</div>
+  </nav>
+</div>
+
+<script>
+  function playEpisode(elem, src) {
+    document.querySelectorAll('.episode').forEach(e => e.classList.remove('active'));
+    elem.classList.add('active');
+    const player = document.getElementById('player');
+    player.querySelector('source').src = src;
+    player.load();
+    player.play();
+  }
+  document.querySelectorAll('.episode').forEach(ep => {
+    ep.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        ep.click();
+      }
+    });
+  });
+</script>
+</body>
+</html>

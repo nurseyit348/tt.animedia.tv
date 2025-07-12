@@ -1,0 +1,163 @@
+--- ✅ register.html ---
+
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Катталуу</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    form {
+      background: #1f1f1f;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #ff6600;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff6600;
+    }
+    input {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #222;
+      color: #eee;
+    }
+    button {
+      padding: 10px;
+      background-color: #ff6600;
+      border: none;
+      border-radius: 6px;
+      color: #121212;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ffaa00;
+    }
+  </style>
+</head>
+<body>
+  <form id="registerForm">
+    <h2>Катталуу</h2>
+    <input type="text" id="username" placeholder="Атыңыз" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Сырсөз" required />
+    <button type="submit">Катталуу</button>
+  </form>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      localStorage.setItem('user', JSON.stringify({ username, email, password }));
+      alert('Ийгиликтүү катталдыңыз! Эми кирүү үчүн логинге өтүңүз.');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
+
+
+--- ✅ login.html ---
+
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кирүү</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    form {
+      background: #1f1f1f;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #ff6600;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff6600;
+    }
+    input {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #222;
+      color: #eee;
+    }
+    button {
+      padding: 10px;
+      background-color: #ff6600;
+      border: none;
+      border-radius: 6px;
+      color: #121212;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ffaa00;
+    }
+  </style>
+</head>
+<body>
+  <form id="loginForm">
+    <h2>Кирүү</h2>
+    <input type="email" id="loginEmail" placeholder="Email" required />
+    <input type="password" id="loginPassword" placeholder="Сырсөз" required />
+    <button type="submit">Кирүү</button>
+  </form>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const loginEmail = document.getElementById('loginEmail').value;
+      const loginPassword = document.getElementById('loginPassword').value;
+
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      if (user && user.email === loginEmail && user.password === loginPassword) {
+        alert('Ийгиликтүү кирдиңиз!');
+        window.location.href = 'index.html';
+      } else {
+        alert('Email же сырсөз туура эмес!');
+      }
+    });
+  </script>
+</body>
+</html>

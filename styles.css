@@ -1,0 +1,52 @@
+/* Модал стилдери */
+.modal {
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: #222;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 320px;
+  color: #eee;
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #bbb;
+}
+.close:hover {
+  color: #e50914;
+}
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  background: #333;
+  border: none;
+  border-radius: 4px;
+  color: #eee;
+}
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background: #e50914;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.modal-content button:hover {
+  background: #b20710;
+}

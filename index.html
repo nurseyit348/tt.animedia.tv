@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="o6_4-L6HJxJfaZTC2daID_07xicaKGoQZ3lQaH0-tVk" />
+  <title>AmediTV — Аниме сайты</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      min-width: 320px;
+    }
+    a {
+      color: #ff6600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header {
+      background-color: #1f1f1f;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(255, 102, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #ff6600;
+      user-select: none;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+      font-weight: 600;
+    }
+    nav a {
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover, nav a.active {
+      background-color: #ff6600;
+      color: #121212;
+    }
+    main {
+      flex: 1;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .search-bar {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-bar input {
+      width: 100%;
+      max-width: 450px;
+      padding: 10px 15px;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background-color: #222;
+      color: #eee;
+      transition: box-shadow 0.3s ease;
+    }
+    .search-bar input:focus {
+      box-shadow: 0 0 12px #ff6600;
+    }
+    /* Аниме карточкаларынын сеткасы */
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+      gap: 20px;
+    }
+    .anime-card {
+      background-color: #1f1f1f;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(255, 102, 0, 0.3);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+    .anime-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff6600;
+    }
+    .anime-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      user-select: none;
+    }
+    .anime-card .title {
+      padding: 12px 15px;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-grow: 1;
+      color: #ff6600;
+      text-align: center;
+    }
+    /* Эпизоддор тизмеси */
+    .episode-list {
+      background-color: #1f1f1f;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255, 102, 0, 0.4);
+      margin-top: 30px;
+      padding: 15px 20px;
+      max-width: 650px;
+      width: 100%;
+      overflow-y: auto;
+      max-height: 400px;
+    }
+    .episode-list h2 {
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: #ff6600;
+      user-select: none;
+    }
+    .episode-list ul {
+      list-style: none;
+    }
+    .episode-list li {
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background-color: #222;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      user-select: none;
+    }
+    .episode-list li:hover {
+      background-color: #ff6600;
+      color: #121212;
+    }
+    /* Видео плеер */
+    .video-player-container {
+      margin-top: 30px;
+      max-width: 720px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px #ff6600;
+      user-select: none;
+    }
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      background-color: #000;
+    }
+    /* Категориялар меню */
+    .categories {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      user-select: none;
+    }
+    .category {
+      padding: 6px 14px;
+      border-radius: 20px;
+      background-color: #222;
+      cursor: pointer;
+      color: #ff6600;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+    .category:hover, .category.active {
+      background-color: #ff6600;
+      color: #121212;
+    }
+    /* Мобил */
+    @media (max-width: 600px) {
+      .anime-card img {
+        height: 180px;
+      }
+      .episode-list {
+        max-height: 300px;
+      }
+      main {
+        padding: 15px 10px;
+      }
+      nav {
+        gap: 12px;
+      }
+    }
+    /* Лого */
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: #ff6600;
+      user-select: none;
+      cursor: default;
+    }
+    /* Бош көрүнүш үчүн */
+    .empty-message {
+      margin-top: 40px;
+      font-size: 1.2rem;
+      color: #bbb;
+      text-align: center;
+      user-select: none;
+    }
+    /* Бүтүн барактын горизонталдык скролду алдын алуу */
+    html, body {
+      overflow-x: hidden;
+    }
+  </style>
+
+</head>
+<body>
+
+<header>
+  <div class="logo">Amedi<span style="color:#ff3300">TV</span></div>
+  <nav>
+    <a href="#" class="active" id="navHome">Башкы бет</a>
+    <a href="#" id="navCategories">Категориялар</a>
+    <a href="login.html" style="padding: 8px 12px; background: #ff6600; color: black; border-radius: 5px; font-weight: bold;">Кирүү</a>
+  </nav>
+</header>
+
+<main>
+  <div class="search-bar">
+    <input type="text" placeholder="Анимени издеңиз..." id="searchInput" autocomplete="off" />
+  </div>
+
+  <div id="categoriesContainer" class="categories" style="display:none;"></div>
+
+  <div id="animeGrid" class="anime-grid"></div>
+
+  <div id="episodeSection" style="display:none;">
+    <div class="episode-list">
+      <h2 id="animeTitle">Аниме аты</h2>
+      <ul id="episodeList"></ul>
+    </div>
+    <div class="video-player-container" style="margin-top:20px;">
+      <video id="videoPlayer" controls></video>
+    </div>
+  </div>
+
+  <div id="emptyMessage" class="empty-message" style="display:none;">Табылган аниме жок...</div>
+</main>
+
+<script>
+  // Деректер: анимелер, категориялар, эпизоддор
+  const animeData = [
+    {
+      id: 1,
+      title: "Naruto Shippuden {S2}",
+      categories: ["Action", "Fantasy"],
+      poster: "Naruto Shippuden.jpg",
+      link: "naruto.html", //
+      releasedEpisodes: 10,
+      totalEpisodes: 500,
+      episodes: [
+
+
+      ]
+    },
+    {
+      id: 2,
+      title: "One Piece",
+      poster: "One Piece.jpg",
+      link: "onepiece.html",
+      episodes: [
+       
+      ]
+    },
+    {
+      id: 3,
+      title: "Attack on Titan",
+      categories: ["Action", "Drama"],
+      poster: "Attack on Titan.jpg",
+      link: "aot.html",
+      episodes: [
+        { id: 1, title: "Attack on Titan Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Attack on Titan Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 4,
+      title: "My Hero Academia",
+      categories: ["Action", "Fantasy"],
+      poster: "h.jpg ",
+      link: "myhero.html",
+      episodes: [
+        { id: 1, title: "My Hero Academia Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "My Hero Academia Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 5,
+      title: "Demon Slayer",
+      categories: ["Action", "Fantasy"],
+      poster: "Demon Slayer.jpg",
+      link: "demonslayer.html",
+      episodes: [
+        { id: 1, title: "Demon Slayer Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Demon Slayer Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 6,
+      title: "Death Note",
+      categories: ["Mystery", "Thriller"],
+      poster: "Death Note.jpg",
+      link: "deathnote.html",
+      episodes: [
+        { id: 1, title: "Death Note Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Death Note Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 7,
+      title: "Fullmetal Alchemist",
+      categories: ["Action", "Adventure"],
+      poster: "Fullmetal Alchemist.jpg",
+      link: "fullmetalalchemist.html",
+      episodes: [
+        { id: 1, title: "Fullmetal Alchemist Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Fullmetal Alchemist Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 8,
+      title: "Tokyo Ghoul",
+      categories: ["Horror", "Drama"],
+      poster: "Tokyo Ghoul.jpg",
+      link: "tokyoghoul.html",
+      episodes: [
+        { id: 1, title: "Tokyo Ghoul Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Tokyo Ghoul Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 9,
+      title: "Bleach",
+      categories: ["Action", "Fantasy"],
+      poster: "Bleach.jpg",
+      link: "bleach.html",
+      episodes: [
+        { id: 1, title: "Bleach Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Bleach Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 10,
+      title: "Black Clover",
+      categories: ["Action", "Fantasy"],
+      poster: "Black Clover.jpg",
+      link: "blackclover.html",
+      episodes: [
+        { id: 1, title: "Black Clover Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Black Clover Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 11,
+      title: "Hunter x Hunter",
+      categories: ["Adventure", "Fantasy"],
+      poster: "Hunter x Hunter.jpg",
+      link: "hunterxhunter.html",
+      episodes: [
+        { id: 1, title: "Hunter x Hunter Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Hunter x Hunter Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 12,
+      title: "Fairy Tail",
+      categories: ["Action", "Fantasy"],
+      poster: "Fairy Tail.jpg",
+      link: "fairytail.html",
+      episodes: [
+        { id: 1, title: "Fairy Tail Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Fairy Tail Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 13,
+      title: "Sword Art Online",
+      categories: ["Action", "Fantasy"],
+      poster: "Sword Art Online.jpg",
+      link: "swordartonline.html",
+      episodes: [
+        { id: 1, title: "Sword Art Online Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Sword Art Online Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 14,
+      title: "Tokyo Revengers",
+      categories: ["Action", "Drama"],
+      poster: "Tokyo Revengers.jpg",
+      link: "tokyorevengers.html",
+      episodes: [
+        { id: 1, title: "Tokyo Revengers Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Tokyo Revengers Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 15,
+      title: "Jujutsu Kaisen",
+      categories: ["Action", "Fantasy"],
+      poster: "jujutsu kaisen.jpg",
+      link: "jujutsukaisen.html",
+      episodes: [
+        { id: 1, title: "Jujutsu Kaisen Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Jujutsu Kaisen Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 16,
+      title: "Mob Psycho 100",
+      categories: ["Action", "Comedy"],
+      poster: "Mob Psycho 100.jpg",
+      link: "mobpsycho100.html",
+      episodes: [
+        { id: 1, title: "Mob Psycho 100 Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Mob Psycho 100 Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 17,
+      title: "Chainsaw Man",
+      categories: ["Action", "Fantasy"],
+      poster: "Chainsaw Man.jpg",
+      link: "chainsawman.html",
+      episodes: [
+        { id: 1, title: "Chainsaw Man Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Chainsaw Man Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 18,
+      title: "The Rising of the Shield Hero",
+      categories: ["Action", "Fantasy"],
+      poster: "The Rising of the Shield Hero.jpg",
+      link: "shieldhero.html",
+      episodes: [
+        { id: 1, title: "The Rising of the Shield Hero Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "The Rising of the Shield Hero Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 19,
+      title: "Black Butler",
+      categories: ["Action", "Mystery"],
+      poster: "Black Butler.jpg",
+      link: "blackbutler.html",
+      episodes: [
+        { id: 1, title: "Black Butler Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Black Butler Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+      id: 20,
+      title: "Re:Zero",
+      categories: ["Action", "Fantasy"],
+      poster: "ReZero.jpg",
+      link: "rezero.html",
+      episodes: [
+        { id: 1, title: "Re:Zero Эпизод 1", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+        { id: 2, title: "Re:Zero Эпизод 2", videoUrl: "https://www.w3schools.com/html/movie.mp4" }
+      ]
+    },
+    {
+  id: 21,
+  title: "Vinland Saga",
+  categories: ["Action", "Historical"],
+  poster: "Vinland Saga.jpg",
+  link: "vinland.html",
+  episodes: [
+  
+    
+    
+  ]
+}
+
+
+  ];
+
+const animeGrid = document.getElementById('animeGrid');
+  const episodeSection = document.getElementById('episodeSection');
+  const episodeList = document.getElementById('episodeList');
+  const animeTitle = document.getElementById('animeTitle');
+  const videoPlayer = document.getElementById('videoPlayer');
+  const searchInput = document.getElementById('searchInput');
+  const categoriesContainer = document.getElementById('categoriesContainer');
+  const navHome = document.getElementById('navHome');
+  const navCategories = document.getElementById('navCategories');
+
+  let currentAnime = null;
+  let filteredAnime = [...animeData];
+  let activeCategory = null;
+
+  // Өзгөртүлгөн renderAnimeGrid функциясы - карточканы басканда башка баракка өтөт
+  function renderAnimeGrid() {
+    animeGrid.innerHTML = ''; // Мурдагы анимелерди тазалап баштайбыз
+
+    if (filteredAnime.length === 0) {
+      document.getElementById('emptyMessage').style.display = 'block';
+      animeGrid.style.display = 'none';
+      return;
+    } else {
+      document.getElementById('emptyMessage').style.display = 'none';
+      animeGrid.style.display = 'grid';
+    }
+
+    filteredAnime.forEach(anime => {
+      const card = document.createElement('div');
+      card.className = 'anime-card';
+
+      card.innerHTML = `
+        <a href="${anime.link}" style="display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none;">
+          <img src="${anime.poster}" alt="${anime.title} постери" />
+          <div class="title">${anime.title}</div>
+        </a>
+      `;
+
+      animeGrid.appendChild(card);
+    });
+  }
+
+  // (Бул функция сенде бар эле, ошону өзгөртпөй калтырдым)
+  function openAnime(id) {
+    currentAnime = animeData.find(a => a.id === id);
+    animeTitle.textContent = currentAnime.title;
+    episodeList.innerHTML = '';
+    currentAnime.episodes.forEach(ep => {
+      const li = document.createElement('li');
+      li.textContent = ep.title;
+      li.tabIndex = 0;
+      li.setAttribute('role', 'button');
+      li.setAttribute('aria-pressed', 'false');
+      li.onclick = () => playEpisode(ep.videoUrl);
+      li.onkeypress = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          playEpisode(ep.videoUrl);
+        }
+      };
+      episodeList.appendChild(li);
+    });
+    episodeSection.style.display = 'flex';
+    playEpisode(currentAnime.episodes[0].videoUrl);
+    window.scrollTo({ top: episodeSection.offsetTop - 50, behavior: 'smooth' });
+  }
+
+  // Видео ойнотуу
+  function playEpisode(url) {
+    videoPlayer.src = url;
+    videoPlayer.play();
+  }
+
+  // Издөө функциясы
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    filteredAnime = animeData.filter(anime => anime.title.toLowerCase().includes(query));
+    activeCategory = null;
+    categoriesContainer.style.display = 'none';
+    renderAnimeGrid();
+    episodeSection.style.display = 'none';
+  });
+
+  // Категориялар менюсын түзүү
+  function renderCategories() {
+    categoriesContainer.innerHTML = '';
+    categories.forEach(cat => {
+      const btn = document.createElement('div');
+      btn.className = 'category';
+      btn.textContent = cat;
+      btn.tabIndex = 0;
+      btn.setAttribute('role', 'button');
+      btn.setAttribute('aria-pressed', 'false');
+      btn.onclick = () => {
+        filterByCategory(cat);
+        navCategories.classList.add('active');
+        navHome.classList.remove('active');
+      };
+      btn.onkeypress = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          filterByCategory(cat);
+          navCategories.classList.add('active');
+          navHome.classList.remove('active');
+        }
+      };
+      categoriesContainer.appendChild(btn);
+    });
+  }
+
+  // Категория боюнча фильтр
+  function filterByCategory(category) {
+    activeCategory = category;
+    filteredAnime = animeData.filter(anime => anime.categories.includes(category));
+    categoriesContainer.style.display = 'flex';
+    renderAnimeGrid();
+    episodeSection.style.display = 'none';
+  }
+
+  // Навигация үчүн иштетүү
+  navHome.addEventListener('click', (e) => {
+    e.preventDefault();
+    filteredAnime = [...animeData];
+    activeCategory = null;
+    categoriesContainer.style.display = 'none';
+    navHome.classList.add('active');
+    navCategories.classList.remove('active');
+    renderAnimeGrid();
+    episodeSection.style.display = 'none';
+    searchInput.value = '';
+  });
+
+  navCategories.addEventListener('click', (e) => {
+    e.preventDefault();
+    categoriesContainer.style.display = 'flex';
+    navCategories.classList.add('active');
+    navHome.classList.remove('active');
+    renderCategories();
+    filteredAnime = [...animeData];
+    episodeSection.style.display = 'none';
+    searchInput.value = '';
+  });
+
+  // Баштоо
+  renderAnimeGrid();
+1 
+</script>
+
+<script>
+  // Колдонуучу кирген-жоктугун текшерүү
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  if (loggedInUser) {
+    // Кирген колдонуучу бар — "Салам, ..." көрсөтүү же чыкканы жасоо
+    document.body.insertAdjacentHTML('afterbegin', `
+      <div style="background:#ff6600; color:#121212; padding: 10px; text-align:center;">
+        Салам, ${loggedInUser}! <button id="logoutBtn">Чыгуу</button>
+      </div>
+    `);
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('loggedInUser');
+      location.reload();
+    });
+  }
+</script>
+
+
+</body>
+</html>
+
